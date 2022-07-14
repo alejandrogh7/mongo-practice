@@ -12,7 +12,7 @@ const bookSchema = new Schema(
       type: String,
       required: true,
     },
-    owner: [
+    owners: [
       {
         type: Schema.Types.ObjectId,
         ref: "User",

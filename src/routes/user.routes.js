@@ -21,6 +21,9 @@ router.post("/", postUser);
 //(PUT)-users/:id
 router.put("/:idUser", putUser);
 
+//(PUT)-users/:id/:id
+router.put("/:idUser/:idBook", putUser);
+
 //(DELETE)-users/:id
 router.delete("/:id", deleteUser);
 

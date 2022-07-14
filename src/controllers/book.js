@@ -13,7 +13,7 @@ const getBooks = async (req, res) => {
 const getBookID = async (req, res) => {
   const { id } = req.params;
   try {
-    const book = await Book.findById(id);
+    const book = await Book.findById(id).populate("owners", "-_id -__v -books");
     return res.status(200).json({ book: book });
   } catch (error) {
     return res.status(400).json({ error: error });
@@ -34,34 +34,20 @@ const putBook = async (req, res) => {
   const { idBook } = req.params;
   const { idUser } = req.params;
   const book = req.body;
-  let bookUpdated;
   if (!idUser) {
     try {
-      bookUpdated = await Book.updateOne({ _id: idBook }, { $set: book });
-      return res.status(201).json({ bookUpdated: bookUpdated });
-    } catch (error) {
-      return res.status(400).json({ error: error });
-    }
-  } else if (!book) {
-    try {
-      bookUpdated = await User.findById(idUser);
-      //set book
-      const user = await Book.findById(idBook);
-      bookUpdated.owner.push(user._id);
-      await bookUpdated.save();
+      const bookUpdated = await Book.updateOne({ _id: idBook }, { $set: book });
       return res.status(201).json({ bookUpdated: bookUpdated });
     } catch (error) {
       return res.status(400).json({ error: error });
     }
   } else {
     try {
-      //update book
-      bookUpdated = await User.findById(idUser);
-      bookUpdated = await Book.updateOne({ _id: idBook }, { $set: book });
-      //set book
-      const user = await Book.findById(idBook);
-      bookUpdated.owner.push(user._id);
-      await bookUpdated.save();
+      const bookUpdated = await Book.findByIdAndUpdate(
+        idBook,
+        { $push: { owners: idUser } },
+        { new: true, useFindAndModify: false }
+      );
       return res.status(201).json({ bookUpdated: bookUpdated });
     } catch (error) {
       return res.status(400).json({ error: error });

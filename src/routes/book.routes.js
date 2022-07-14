@@ -19,6 +19,9 @@ router.get("/", getBooks);
 router.post("/", postBook);
 
 //(PUT)-books/:id
+router.put("/:idBook/", putBook);
+
+//(PUT)-books/:id/:id
 router.put("/:idBook/:idUser", putBook);
 
 //(DELETE)-books/:id

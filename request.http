@@ -4,7 +4,7 @@
 GET http://localhost:3000/users/ HTTP/1.1
 
 ###
-GET http://localhost:3000/users/62cf42c87ccffe4793fc42b7 HTTP/1.1
+GET http://localhost:3000/users/62d00dc7fe07e31cd33f3fe2 HTTP/1.1
 
 ###
 POST http://localhost:3000/users/ HTTP/1.1
@@ -21,9 +21,13 @@ PUT http://localhost:3000/users/62d00dc7fe07e31cd33f3fe2 HTTP/1.1
 Content-Type: application/json
 
 {
-    "name":"name test-updated",
+    "name":"name test-updated-01",
      "nickname":"testing-updated-0024356"
 }
+
+###
+PUT http://localhost:3000/users/62d00dc7fe07e31cd33f3fe2/62d023a4e09f835d5affac04 HTTP/1.1
+
 
 ###
 DELETE http://localhost:3000/users/62cf59fc2025d5c01f7423b2  HTTP/1.1
@@ -33,7 +37,7 @@ DELETE http://localhost:3000/users/62cf59fc2025d5c01f7423b2  HTTP/1.1
 GET http://localhost:3000/books/ HTTP/1.1
 
 ###
-GET http://localhost:3000/books/62cf404341823222d9b93ee3 HTTP/1.1
+GET http://localhost:3000/books/62d023a4e09f835d5affac04 HTTP/1.1
 
 ###
 POST http://localhost:3000/books/ HTTP/1.1
@@ -53,4 +57,8 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/books/:id  HTTP/1.1
+PUT http://localhost:3000/books/62d023a4e09f835d5affac04/62d00dc7fe07e31cd33f3fe2 HTTP/1.1
+
+
+###
+DELETE http://localhost:3000/books/62cf404341823222d9b93ee3  HTTP/1.1
